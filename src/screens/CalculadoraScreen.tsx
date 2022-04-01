@@ -16,6 +16,33 @@ const CalculadoraScreen = () => {
                 <Boton texto="/" color="FF9427" />
             </View>
 
+            <View style={styles.fila}>
+                <Boton texto="7" />
+                <Boton texto="8" />
+                <Boton texto="9" />
+                <Boton texto="X" color="FF9427" />
+            </View>
+
+            <View style={styles.fila}>
+                <Boton texto="4" />
+                <Boton texto="5" />
+                <Boton texto="6" />
+                <Boton texto="-" color="FF9427" />
+            </View>
+
+            <View style={styles.fila}>
+                <Boton texto="1" />
+                <Boton texto="2" />
+                <Boton texto="3" />
+                <Boton texto="+" color="FF9427" />
+            </View>
+
+            <View style={styles.fila}>
+                <Boton texto="0" ancho />
+                <Boton texto="." />
+                <Boton texto="=" color="FF9427" />
+            </View>
+
         </View>
     );
 };

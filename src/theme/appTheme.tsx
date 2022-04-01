@@ -2,15 +2,16 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 
-    fondo: {
-        flex: 1,
-        backgroundColor: 'black',
-    },
 
     container: {
         flex: 1,
         paddingHorizontal: 20,
         justifyContent: 'flex-end',
+    },
+
+    fondo: {
+        flex: 1,
+        backgroundColor: 'black',
     },
 
     resultado: {

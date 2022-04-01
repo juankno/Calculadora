@@ -1,19 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Props {
     texto: string;
     color?: string;
+    ancho?: boolean;
 }
 
-const Boton = ({ texto, color = '#2D2D2D' }: Props) => {
+const Boton = ({ texto, color = '2D2D2D', ancho = false }: Props) => {
     return (
-        <View style={{
-            ...styles.boton,
-            backgroundColor: `#${color}`,
-        }}>
-            <Text style={styles.textoBoton}>{texto}</Text>
-        </View>
+
+        <TouchableOpacity>
+            <View style={{
+                ...styles.boton,
+                backgroundColor: `#${color}`,
+                width: (ancho) ? 180 : 80,
+            }}>
+                <Text style={{
+                    ...styles.textoBoton,
+                    color: (color === '9B9B9B') ? 'black' : 'white',
+                }}>{texto}</Text>
+
+            </View>
+        </TouchableOpacity>
     );
 
 };
@@ -22,9 +31,9 @@ const styles = StyleSheet.create({
     boton: {
         height: 80,
         width: 80,
-        borderRadius: 100,
         justifyContent: 'center',
         marginHorizontal: 10,
+        borderRadius: 100,
     },
 
     textoBoton: {
@@ -32,7 +41,7 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 30,
         color: 'white',
-        fontWeight: 'bold',
+        fontWeight: '400',
     },
 });
 
