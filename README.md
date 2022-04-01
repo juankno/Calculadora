@@ -1,6 +1,6 @@
 # Calculadora starter
 
-This is a project based in the basic use of the framework of react native.
+This is a project based in the basic use of the framework of react native and typescript.
 
 ## Getting started
 
@@ -21,7 +21,7 @@ npx react-native run-android
 
 *(If you need more information about react native [You can see the documentation](https://reactnative.dev/))*
 
-Your app with react native and typescipt is now up and running! 
+Your app with react native and typescript is now up and running! 
 
 
 ## Licence
