@@ -25,20 +25,11 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
 
-    boton:{
-        height: 80,
-        width: 80,
-        backgroundColor: '#333333',
-        borderRadius: 100,
+    fila: {
+        flexDirection: 'row',
         justifyContent: 'center',
-    },
-
-    textoBoton: {
-        textAlign: 'center',
-        padding: 10,
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: 'white',
+        marginBottom: 18,
+        paddingHorizontal: 10,
     },
 
 });
