@@ -1,26 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import CalculadoraScreen from './src/screens/CalculadoraScreen';
+import styles from './src/theme/appTheme';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Calculadora</Text>
-    </View>
+    <SafeAreaView style={styles.fondo}>
+      <StatusBar
+      backgroundColor="black"
+      barStyle={'light-content'}
+      />
+      <CalculadoraScreen />
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-});
 
 export default App;
