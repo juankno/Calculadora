@@ -54,6 +54,24 @@ const CalculadoraScreen = () => {
         }
     };
 
+    const botonEliminar = () => {
+        const nuevoNumero = numero.substring(0, numero.length - 1);
+
+        if (!nuevoNumero) {
+            setNumero('0');
+        } else if (nuevoNumero === '.') {
+            setNumero('0');
+        } else if (nuevoNumero === '-') {
+            setNumero('0');
+        } else if (nuevoNumero === '+') {
+            setNumero('0');
+        }
+        else {
+            setNumero(nuevoNumero);
+        }
+
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.resultadoCorto}>{numeroAnterior}</Text>
@@ -67,7 +85,7 @@ const CalculadoraScreen = () => {
             <View style={styles.fila}>
                 <Boton texto="C" color="9B9B9B" accion={limpiar} />
                 <Boton texto="+/-" color="9B9B9B" accion={cambiarSignos} />
-                <Boton texto="del" color="9B9B9B" accion={limpiar} />
+                <Boton texto="del" color="9B9B9B" accion={botonEliminar} />
                 <Boton texto="/" color="FF9427" accion={limpiar} />
             </View>
 
