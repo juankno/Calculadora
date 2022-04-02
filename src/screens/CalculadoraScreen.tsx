@@ -13,7 +13,45 @@ const CalculadoraScreen = () => {
     };
 
     const armarNumero = (numeroTexto: string) => {
-        setNumero(numero + numeroTexto);
+
+        // No aceptar doble punto
+        if (numero.includes('.') && numeroTexto === '.') { return; }
+
+        if (numero.startsWith('0') || numero.startsWith('-0')) {
+
+            // punto decimal
+            if (numeroTexto === '.') {
+                setNumero(numero + numeroTexto);
+
+                // evaluar si es otro cero, y hay un punto
+            } else if (numeroTexto === '0' && numero.includes('.')) {
+                setNumero(numero + numeroTexto);
+
+                // evaluar si es difente de cero y no tiene un punto
+            } else if (numeroTexto !== '0' && !numero.includes('.')) {
+                setNumero(numeroTexto);
+
+                // Evitar  000.0
+            } else if (numeroTexto === '0' && !numero.includes('.')) {
+                setNumero(numero);
+
+            } else {
+                setNumero(numero + numeroTexto);
+            }
+
+        } else {
+
+            setNumero(numero + numeroTexto);
+        }
+
+    };
+
+    const cambiarSignos = () => {
+        if (numero.includes('-')) {
+            setNumero(numero.replace('-', ''));
+        } else {
+            setNumero('-' + numero);
+        }
     };
 
     return (
@@ -28,7 +66,7 @@ const CalculadoraScreen = () => {
 
             <View style={styles.fila}>
                 <Boton texto="C" color="9B9B9B" accion={limpiar} />
-                <Boton texto="+/-" color="9B9B9B" accion={limpiar} />
+                <Boton texto="+/-" color="9B9B9B" accion={cambiarSignos} />
                 <Boton texto="del" color="9B9B9B" accion={limpiar} />
                 <Boton texto="/" color="FF9427" accion={limpiar} />
             </View>
