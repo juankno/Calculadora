@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text } from 'react-native';
 import Boton from '../components/Boton';
 import styles from '../theme/appTheme';
+
+enum Operadores {
+    dividir, multiplicar, sumar, restar,
+}
 
 const CalculadoraScreen = () => {
 
     const [numero, setNumero] = useState('100');
     const [numeroAnterior, setNumeroAnterior] = useState('0');
 
+    const ultimaOperacion = useRef<Operadores>();
+
     const limpiar = () => {
         setNumero('0');
+        setNumeroAnterior('0');
     };
 
     const armarNumero = (numeroTexto: string) => {
@@ -72,9 +79,42 @@ const CalculadoraScreen = () => {
 
     };
 
+    const mostarNumeroAnterior = () => {
+        if (numero.endsWith('.')) {
+            setNumeroAnterior(numero.slice(0, -1));
+        } else {
+            setNumeroAnterior(numero);
+        }
+        setNumero('0');
+    };
+
+    const botonDividir = () => {
+        mostarNumeroAnterior();
+        ultimaOperacion.current = Operadores.dividir;
+    };
+
+    const botonMultiplicar = () => {
+        mostarNumeroAnterior();
+        ultimaOperacion.current = Operadores.multiplicar;
+    };
+
+    const botonRestar = () => {
+        mostarNumeroAnterior();
+        ultimaOperacion.current = Operadores.restar;
+    };
+
+    const botonSumar = () => {
+        mostarNumeroAnterior();
+        ultimaOperacion.current = Operadores.sumar;
+    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.resultadoCorto}>{numeroAnterior}</Text>
+
+            {(numeroAnterior !== '0') && (
+                <Text style={styles.resultadoCorto}>{numeroAnterior}</Text>
+            )}
+
             <Text
                 style={styles.resultado}
                 numberOfLines={1}
@@ -86,28 +126,28 @@ const CalculadoraScreen = () => {
                 <Boton texto="C" color="9B9B9B" accion={limpiar} />
                 <Boton texto="+/-" color="9B9B9B" accion={cambiarSignos} />
                 <Boton texto="del" color="9B9B9B" accion={botonEliminar} />
-                <Boton texto="/" color="FF9427" accion={limpiar} />
+                <Boton texto="/" color="FF9427" accion={botonDividir} />
             </View>
 
             <View style={styles.fila}>
                 <Boton texto="7" accion={armarNumero} />
                 <Boton texto="8" accion={armarNumero} />
                 <Boton texto="9" accion={armarNumero} />
-                <Boton texto="X" color="FF9427" accion={limpiar} />
+                <Boton texto="X" color="FF9427" accion={botonMultiplicar} />
             </View>
 
             <View style={styles.fila}>
                 <Boton texto="4" accion={armarNumero} />
                 <Boton texto="5" accion={armarNumero} />
                 <Boton texto="6" accion={armarNumero} />
-                <Boton texto="-" color="FF9427" accion={limpiar} />
+                <Boton texto="-" color="FF9427" accion={botonRestar} />
             </View>
 
             <View style={styles.fila}>
                 <Boton texto="1" accion={armarNumero} />
                 <Boton texto="2" accion={armarNumero} />
                 <Boton texto="3" accion={armarNumero} />
-                <Boton texto="+" color="FF9427" accion={limpiar} />
+                <Boton texto="+" color="FF9427" accion={botonSumar} />
             </View>
 
             <View style={styles.fila}>
