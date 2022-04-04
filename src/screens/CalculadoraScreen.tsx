@@ -79,7 +79,7 @@ const CalculadoraScreen = () => {
 
     };
 
-    const mostarNumeroAnterior = () => {
+    const mostrarNumeroAnterior = () => {
         if (numero.endsWith('.')) {
             setNumeroAnterior(numero.slice(0, -1));
         } else {
@@ -89,23 +89,45 @@ const CalculadoraScreen = () => {
     };
 
     const botonDividir = () => {
-        mostarNumeroAnterior();
+        mostrarNumeroAnterior();
         ultimaOperacion.current = Operadores.dividir;
     };
 
     const botonMultiplicar = () => {
-        mostarNumeroAnterior();
+        mostrarNumeroAnterior();
         ultimaOperacion.current = Operadores.multiplicar;
     };
 
     const botonRestar = () => {
-        mostarNumeroAnterior();
+        mostrarNumeroAnterior();
         ultimaOperacion.current = Operadores.restar;
     };
 
     const botonSumar = () => {
-        mostarNumeroAnterior();
+        mostrarNumeroAnterior();
         ultimaOperacion.current = Operadores.sumar;
+    };
+
+    const calcular = () => {
+        const numero1 = Number(numero);
+        const numero2 = Number(numeroAnterior);
+
+        switch (ultimaOperacion.current) {
+            case Operadores.sumar:
+                setNumero(`${numero1 + numero2}`);
+                break;
+            case Operadores.restar:
+                setNumero(`${numero2 - numero1}`);
+                break;
+            case Operadores.multiplicar:
+                setNumero(`${numero1 * numero2}`);
+                break;
+            case Operadores.dividir:
+                setNumero(`${numero2 / numero1}`);
+                break;
+        }
+
+        setNumeroAnterior('0');
     };
 
     return (
@@ -153,7 +175,7 @@ const CalculadoraScreen = () => {
             <View style={styles.fila}>
                 <Boton texto="0" accion={armarNumero} ancho />
                 <Boton texto="." accion={armarNumero} />
-                <Boton texto="=" color="FF9427" accion={limpiar} />
+                <Boton texto="=" color="FF9427" accion={calcular} />
             </View>
 
         </View>
